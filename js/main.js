@@ -22,7 +22,7 @@ async function fetchMovies() {
 function filterMovies() {
   const searchTerm = searchInp.value.trim().toLowerCase();
   if (!searchTerm) {
-    filteredMovies = [...originalMovies];
+    return
   }
 
   filteredMovies = originalMovies.filter((movie) => {
@@ -42,6 +42,16 @@ function filterMovies() {
 function showMovies() {
   const movieList = document.getElementById("lista");
   movieList.innerHTML = "";
+
+  if (!filteredMovies.length) {
+    movieList.innerHTML = `
+    <div class="alert alert-warning text-center mt-3" role="alert">
+      <h4 class="alert-heading"><i class="fa-solid fa-triangle-exclamation"></i> No hay resultados</h4>
+      <p class="text-body-secondary">Intenta buscar por título, descripción o género</p>
+    </div>
+    `
+
+  }
 
   filteredMovies.forEach((movie) => {
     movieList.innerHTML += `
@@ -64,7 +74,7 @@ function showMovies() {
       <div class="offcanvas-body">
         <p class="text-body-secondary">${movie.overview}</p>
       </div>
-      <hr />
+      <hr>
       <div class="offcanvas-footer">
         <div class="dropdown float-end me-3">
           <a href="#" class="btn btn-secondary dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
