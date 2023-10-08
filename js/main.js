@@ -49,15 +49,14 @@ function showMovies() {
       class="list-group-item list-group-item-action"
       href="#"
       data-bs-toggle="offcanvas"
-      data-bs-target="#offcanvasTop"
+      data-bs-target="#movie-${movie.id}"
       aria-controls="offcanvasTop"
-      id="${movie.id}"
     >
       <p class="float-end">${showRating(movie.vote_average)}</p>
       <h5>${movie.title}</h5>
       <p class="text-body-tertiary">${movie.tagline}</p>
     </a>
-    <div class="offcanvas offcanvas-top" tabindex="-1" id="offcanvasTop" aria-labelledby="offcanvasTopLabel">
+    <div class="offcanvas offcanvas-top" tabindex="-1" id="movie-${movie.id}" aria-labelledby="offcanvasTopLabel">
       <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasTopLabel">${movie.title}</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
